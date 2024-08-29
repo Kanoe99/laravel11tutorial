@@ -18,6 +18,7 @@ class JobFactory extends Factory
     {
         return [
             "title" => fake()->jobTitle(),
+            "employer_id" => 1,
             "salary" => "$" . rand(1, 99) . ",000",
         ];
     }
