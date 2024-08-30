@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Employer;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Post;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class JobFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,8 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            "title" => fake()->jobTitle(),
-            "employer_id" => Employer::factory(),
-            "salary" => "$" . rand(1, 99) . ",000",
+            'body' => fake()->text(15),
+            'post_id' => Post::factory(),
         ];
     }
 }
