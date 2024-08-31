@@ -10,10 +10,12 @@ Route::get('/', function () {
 
 
 Route::get('/jobs', function () {
+    $job = Job::with('employer')->get();
+
     return view(
         'jobs.index',
         [
-            'jobs' => Job::all()
+            'jobs' => $job
         ]
     );
 });
