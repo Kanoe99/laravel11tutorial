@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use App\Models\Employer;
-use App\Models\Job;
+// use App\Models\Job;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         Tag::factory(10)->create();
         User::factory(10)->create();
+
+        $this->call(JobSeeder::class);
 
         // User::factory()->create([
         //     'name' => fake()->firstName(),

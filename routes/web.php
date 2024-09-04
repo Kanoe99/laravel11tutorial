@@ -20,6 +20,21 @@ Route::get('/jobs', function () {
     );
 });
 
+Route::get('/jobs/create', function () {
+    return view('jobs.create');
+});
+
+Route::post('/jobs', function () {
+    //validation goes here
+});
+
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+
+//wild cards at the bottom!
 Route::get('/jobs/{id}', function ($id) {
 
     $job = Job::findOrFail($id);
@@ -30,8 +45,4 @@ Route::get('/jobs/{id}', function ($id) {
             'job' => $job
         ]
     );
-});
-
-Route::get('/contact', function () {
-    return view('contact');
 });
