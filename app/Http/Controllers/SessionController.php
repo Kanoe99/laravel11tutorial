@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class SessionController extends Controller
 {
@@ -11,8 +13,29 @@ class SessionController extends Controller
         return view("auth.login");
     }
 
-    public function store()
+    public function store(User $user)
     {
-        dd(request()->all());
+        $attributes = request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (!Auth::login($user)) {
+            throw ValidationException::withMessages([
+                'email' => 'Sorry, wrong credentials!'
+            ]);
+        }
+
+        request()->session()->regenerate();
+
+        return redirect('/jobs');
+
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }
