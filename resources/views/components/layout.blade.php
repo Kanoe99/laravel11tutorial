@@ -25,16 +25,16 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <x-navlink href="/">Home</x-navlink>
-                                <x-navlink href="jobs">Jobs</x-navlink>
-                                <x-navlink href="contact">Contact</x-navlink>
+                                <x-navlink href="/jobs">Jobs</x-navlink>
+                                <x-navlink href="/contact">Contact</x-navlink>
                             </div>
                         </div>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 gap-2 flex items-center md:ml-6">
                             @guest()
-                                <x-navlink href="login">Login</x-navlink>
-                                <x-navlink href="register">Register</x-navlink>
+                                <x-navlink href="/login">Login</x-navlink>
+                                <x-navlink href="/register">Register</x-navlink>
                             @endguest
                             @auth
                                 <form method="POST" action="/logout">
