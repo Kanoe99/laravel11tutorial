@@ -20,7 +20,7 @@ class SessionController extends Controller
             'password' => ['required'],
         ]);
 
-        if (!Auth::login($user)) {
+        if (!Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
                 'email' => 'Sorry, wrong credentials!'
             ]);

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Job $job)
     {
         $job = Job::with('employer')->latest()->simplePaginate(10);
 
@@ -17,11 +18,6 @@ class JobController extends Controller
             ]
         );
     }
-    public function create()
-    {
-        return view('jobs.create');
-    }
-
     public function show(Job $job)
     {
         return view(
@@ -31,8 +27,13 @@ class JobController extends Controller
             ]
         );
     }
+    public function create()
+    {
+        return view('jobs.create');
+    }
 
-    public function store()
+
+    public function store(User $user)
     {
         request()->validate([
             'title' => ['required', 'min:3'],
@@ -63,8 +64,6 @@ class JobController extends Controller
 
     public function update(Job $job)
     {
-        //authorize (on hold...)
-
         request()->validate([
             'title' => ['required', 'min:3'],
             'salary' => ['required'],
@@ -88,6 +87,7 @@ class JobController extends Controller
 
     public function destroy(Job $job)
     {
+
         $job->delete();
 
         return redirect("/jobs");
